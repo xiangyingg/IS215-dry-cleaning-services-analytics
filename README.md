@@ -1,2 +1,3 @@
 # IS215-dry-cleaning-services-analytics
-IS215 project analysing Astoria’s dry cleaning services using analytics and digital solutions to improve customer experience and operations.
+
+This project explores digital transformation opportunities in the dry cleaning services industry. Using Astoria Dry Cleaning Services as a case study, it leverages data analytics and digital solutions to generate business insights and improve operational efficiency and customer experience.
