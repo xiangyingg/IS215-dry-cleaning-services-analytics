@@ -1,116 +1,186 @@
 # IS215-dry-cleaning-services-analytics
 
-This project explores digital transformation opportunities in the dry cleaning services industry. Using Astoria Dry Cleaning Services as a case study, it leverages data analytics and digital solutions to generate business insights and improve operational efficiency and customer experience.
+This project examines digital transformation opportunities in the dry cleaning industry, using Astoria Dry Cleaning Services as a case study. It applies data analytics and digital solutions to generate business insights, optimise route planning, forecast demand, and improve workforce planning—enhancing both operational efficiency and customer experience in Singapore.
 
-Astoria Cleaning Services — Analytics Project
-
-Data-driven analysis to optimise route planning, forecast peak demand, and plan workforce capacity for Astoria Cleaning Services (Singapore).
-
-Project Structure
-astoria-analytics/
+📂 Project Structure
+astoria-project/
 │
 ├── data1/
-│   ├── astoria_orders.csv          # Main synthetic orders dataset (4,500 rows, Jan 2024–Jun 2025)
+│   └── astoria_orders.csv  # Main synthetic orders dataset (4,500 rows, Jan 2024–Jun 2025)
 │
-│── requirements.txt
-└── README.md
+├── src/
+│   ├── manpower_optimize/
+│   │   └── astoria_manpower_optimization.ipynb
+│   │
+│   ├── peak_demand/
+│   │   ├── astoria_peak_demand.ipynb
+│   │   ├── fig1_hourly_pattern.png
+│   │   ├── fig2_period_summary.png
+│   │   ├── fig3_dow_patterns.png
+│   │   ├── fig4_monthly_trend.png
+│   │   ├── fig5_weekly_heatmap.png
+│   │   ├── fig6_slot_demand.png
+│   │   ├── fig7_slot_crossanalysis.png
+│   │   ├── fig8_zone_hour.png
+│   │   └── fig9_rider_forecast.png
+│   │
+│   ├── peak_demand2/
+│   │   ├── astoria_peak_demand.ipynb
+│   │   ├── day_hour_heatmap.png
+│   │   ├── demand_forecast.png
+│   │   ├── hourly_demand.png
+│   │   ├── monthly_weekly_trend.png
+│   │   ├── peak_vs_offpeak.png
+│   │   ├── rider_allocation.png
+│   │   ├── seasonal_decomposition.png
+│   │   ├── slot_demand_timing.png
+│   │   ├── time_bucket_demand.png
+│   │   └── zone_peak_bookings.png
+│   │
+│   ├── route_optimize/
+│   │   ├── astoria_route_optimisation.ipynb
+│   │   ├── astoria_heatmap.html
+│   │   ├── cluster_profiling.png
+│   │   ├── driver_allocation.png
+│   │   ├── kmeans_clusters_scatter.png
+│   │   ├── kmeans_elbow_silhouette.png
+│   │   ├── slot_preference_by_zone.png
+│   │   └── zone_day_heatmap.png
+│   │
+│   └── workforce_planning/
+│       ├── astoria_workforce_planning.ipynb
+│       ├── fig1_effort_overview.png
+│       ├── fig2_service_workload.png
+│       ├── fig3_4_category_analysis.png
+│       ├── fig5_processing_heatmap.png
+│       ├── fig6_express_pressure.png
+│       ├── fig6b_express_effort.png
+│       ├── fig7_weekly_forecast.png
+│       ├── fig8_dow_patterns.png
+│       ├── fig9_tech_allocation.png
+│       └── fig10_routing_matrix.png
+│
+├── README.md
+├── requirements.txt
+└── .gitignore
 
 
-🗂️ Dataset Overview
-astoria_orders_v2.csv — Main Dataset
-4,500 synthetic orders generated to reflect realistic Astoria operations.
-ColumnDescriptionorder_idUnique order identifier (AST-00001 …)booking_dateDate the order was placedbooking_timeTime the order was placed (0–23h, reflects real customer behaviour)booking_hourInteger hour extracted from booking_timebooking_day_of_weekDay name (Monday–Saturday)collection_dateDate of pickup by drivercollection_timeTime of pickup — strictly 9am–5pm Mon–Satdelivery_dateDate order was delivered back to customerdelivery_slotDelivery window: 09:00-13:00, 12:00-16:00, or 15:00-18:00zoneSingapore delivery zone (e.g. Bishan / Toa Payoh)postal_districtSingapore postal district label (e.g. District 20)postal_code6-digit Singapore postal codelatitudeLatitude coordinate of order locationlongitudeLongitude coordinate of order locationserviceService type (e.g. Shirt / Blouse, Curtains, Luxury Bag)categoryService category (Clothing, Household, Bags & Shoes, etc.)quantityNumber of items in the orderbase_price_sgdBase price per item (SGD)delicate_surchargeAdditional $4.00 charge for delicate/complex itemsexpress_typeExpress tier: None, Next-day, Same-day, 3-Hourexpress_multiplierRevenue multiplier (1×, 2×, or 3×)order_value_sgdFinal order value (SGD)free_deliveryYes if order ≥ $40, otherwise Noprocessing_daysEstimated days to process the serviceprocessing_labelHuman-readable processing time (e.g. 7–14 days)effort_scoreWorkload complexity score (1 = simple, 5 = complex)order_statusCompleted / In Progress / Pending Delivery
+Dataset Overview
+File: astoria_orders.csv  
+Rows: 4,500 synthetic orders (Jan 2024 – Jun 2025)
 
+Column	Description
+order_id	Unique order identifier (AST-00001 …)
+booking_date	Date the order was placed
+booking_time	Time the order was placed (0–23h, reflects customer behaviour)
+booking_hour	Integer hour extracted from booking_time
+booking_day_of_week	Day name (Monday–Saturday)
+collection_date	Date of pickup by driver
+collection_time	Time of pickup (09:00–17:00, Mon–Sat)
+delivery_date	Date order was delivered back
+delivery_slot	Delivery window: 09–13h, 12–16h, 15–18h
+zone	Singapore delivery zone (e.g. Bishan / Toa Payoh)
+postal_district	Singapore postal district (e.g. District 20)
+postal_code	6-digit Singapore postal code
+latitude / longitude	Coordinates of order location
+service	Service type (e.g. Shirt, Curtains, Luxury Bag)
+category	Service category (Clothing, Household, Bags & Shoes)
+quantity	Number of items in the order
+base_price_sgd	Base price per item (SGD)
+delicate_surcharge	Additional $4 charge for delicate items
+express_type	Express tier: None, Next-day, Same-day, 3-Hour
+express_multiplier	Revenue multiplier (1×, 2×, or 3×)
+order_value_sgd	Final order value (SGD)
+free_delivery	Yes if order ≥ $40
+processing_days	Estimated days to process
+processing_label	Human-readable processing time (e.g. 7–14 days)
+effort_score	Workload complexity score (1–5)
+order_status	Completed / In Progress / Pending Delivery
 
-Note on booking_time vs collection_time:
-booking_time reflects when a customer placed their order (can be any hour, including evenings).
-collection_time is strictly 9am–5pm as per Astoria's operational hours.
-These two signals are kept separate throughout the analysis.
+Note:
+
+booking_time = when customer placed order (any hour, including evenings).
+
+collection_time = operational pickup hours (09:00–17:00, Mon–Sat).
+
+These signals are analysed separately.
 
 📊 Problem Statements & Notebooks
 1. 🗺️ Route Optimisation — astoria_route_optimisation.ipynb
-Goal: Cluster orders by geographical zone to identify high-density delivery areas and estimate the number of drivers required per zone.
-Key analyses:
+Goal: Cluster orders by zone to identify high-density areas and estimate driver needs.
 
-Zone-level order and revenue concentration
-K-Means clustering on lat/lng coordinates (elbow + silhouette method)
-Interactive Folium heatmap of all order locations → saved as astoria_heatmap.html
-Monthly trend by zone, zone × day-of-week heatmap
-Driver estimation per zone and delivery slot
-Cluster profiling (order value, express rate, effort score)
+Methods: K-Means clustering, Folium heatmaps, zone × day-of-week analysis.
 
-Key insight generated:
+Key Insight: Bishan/Toa Payoh and Tampines/Pasir Ris are highest-density clusters; CBD orders are low volume but highest average value (~SGD 67).
 
-Bishan/Toa Payoh and Tampines/Pasir Ris are the two highest-density clusters, consistently driving the most orders. CBD orders are low volume but highest average order value ($67+).
+Decision Supported: Zone-based routing, dedicated drivers per cluster, pre-sorting bags by zone.
 
-Decisions supported:
+2. ⏰ Peak Demand Timing — astoria_peak_demand.ipynb / astoria_peak_demand_v2.ipynb
+Goal: Identify booking vs collection peaks for rider allocation.
 
-Implement zone-based delivery routing instead of order-by-order dispatch
-Assign dedicated drivers per cluster
-Pre-sort collection bags by zone before dispatch
+Methods: Hourly distributions, time buckets, Holt-Winters forecasting.
 
+Key Insight: Two booking peaks (08–10h, 20–22h). Collections next day. 12–16h slot carries ~43% of deliveries.
 
-2. ⏰ Peak Demand Timing — astoria_peak_demand_v2.ipynb
-Goal: Identify when demand peaks to allocate riders and collection slots more efficiently.
-Two signals analysed separately:
-PartSignalColumnPurposeAWhen customers bookbooking_hourWhatsApp responsiveness, promotionsBWhen collections happencollection_hourRider allocation, slot planning
-Key analyses:
+Decision Supported: WhatsApp responsiveness at night, +1 rider on Fridays, cap 12–16h slot.
 
-Hourly booking distribution (full 24h)
-Time-of-day bucket breakdown
-Day-of-week × hour heatmaps (booking & collection)
-Monthly trend with school holiday / festive highlights
-8-week demand forecast using Holt-Winters Exponential Smoothing
-Delivery slot demand + day-of-week breakdown
-Rider allocation recommendation by slot (standard / Friday / festive)
+3. 👥 Workforce Planning — astoria_workforce_planning.ipynb
+Goal: Analyse workload distribution and forecast weekly effort.
 
-Key insight generated:
+Methods: Effort scoring, workload heatmaps, routing matrices.
 
-Two booking peaks: 8–10am and 8–10pm (post-work). Customers book at night but collection happens next working day. The 12:00–16:00 delivery slot carries ~43% of all deliveries.
+Key Insight: Express services disproportionately increase workload pressure.
 
-Decisions supported:
+Decision Supported: Adjust staffing for express tiers, balance workload across categories.
 
-Keep WhatsApp active and responsive during 8–10pm window
-Add +1 rider on Fridays (highest demand day)
-Cap the 12:00–16:00 slot and overflow to adjacent slots
+⚙️ Setup & Running
+Requirements:
 
+bash
+pip install pandas numpy matplotlib seaborn scikit-learn statsmodels folium plotly
+Steps:
 
-⚙️ Setup & Running the Notebooks
-Requirements
-bashpip install pandas numpy matplotlib seaborn scikit-learn statsmodels folium plotly
-Steps
+Clone or download this project folder.
 
-Clone or download this project folder
-Place astoria_orders_v2.csv in the same directory as the notebooks
-Open notebooks in Jupyter Notebook, JupyterLab, or Google Colab
-Run all cells top to bottom
+Place astoria_orders.csv in the same directory as notebooks.
 
-Google Colab (quick start)
-python# Upload the CSV first, then run:
+Open notebooks in Jupyter Notebook, JupyterLab, or Google Colab.
+
+Run all cells top to bottom.
+
+Google Colab Quick Start:
+
+python
 from google.colab import files
-files.upload()  # select astoria_orders_v2.csv
-
+files.upload()  # select astoria_orders.csv
 🏪 Business Context
-Astoria Cleaning Services is a Singapore-based laundry and dry-cleaning company offering:
+Astoria Cleaning Services (Singapore) offers:
 
-Standard, express (same-day / next-day / 3-hour) cleaning
-Specialist care for delicate items (leather, feathered, curtains, carpets)
-Free pickup and delivery for orders ≥ $40
-Collection: Mon–Sat, 9am–5pm (closed Sundays)
-Delivery slots: 09:00–13:00 · 12:00–16:00 · 15:00–18:00
-Contact: WhatsApp 8338 5131
+Standard & express cleaning (same-day / next-day / 3-hour)
 
-Pricing highlights:
+Specialist care for delicate items (leather, curtains, carpets)
 
-Standard garments: $9–$20
-Premium / delicate items: $45–$120+ with +$4 surcharge
+Free pickup/delivery for orders ≥ SGD 40
+
+Collection: Mon–Sat, 09:00–17:00
+
+Delivery slots: 09–13h · 12–16h · 15–18h
+
+Pricing Highlights:
+
+Standard garments: SGD 9–20
+
+Premium/delicate items: SGD 45–120 (+SGD 4 surcharge)
+
 Express services: 2×–3× base rate
-Long processing items: Curtains, carpets, leather/suede — 7–14 days
 
+Long processing items: 7–14 days
 
 📌 Notes
+All data is synthetic, generated for analytical purposes.
 
-All data is synthetic and generated for analytical purposes only
-Postal codes and coordinates are representative of Singapore zones
-Processing times may vary during peak seasons (school holidays & festive periods)
-Sunday is excluded from all analyses (Astoria is closed)
+Postal codes and coordinates are representative of Singapore zones.
+
+Sunday excluded (Astoria closed).
+
+Processing times vary during peak seasons (school holidays, festive periods).
