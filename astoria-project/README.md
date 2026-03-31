@@ -1,186 +1,173 @@
-# IS215-dry-cleaning-services-analytics
+🧺 Astoria Dry Cleaning Analytics Project
+📌 Overview
 
-This project examines digital transformation opportunities in the dry cleaning industry, using Astoria Dry Cleaning Services as a case study. It applies data analytics and digital solutions to generate business insights, optimise route planning, forecast demand, and improve workforce planning—enhancing both operational efficiency and customer experience in Singapore.
+This project explores digital transformation in the dry cleaning industry using Astoria Dry Cleaning Services (Singapore) as a case study.
+
+It leverages data analytics, forecasting, and optimization techniques to enhance:
+
+- Demand prediction
+- Workforce planning
+- Route efficiency
+- Revenue performance
+- Customer experience
+
+🚀 Key Impact
+📈 Identified dual booking peaks (08:00–10:00, 20:00–22:00) to optimise staffing
+🚚 Improved delivery planning through zone-based clustering
+👨‍🔧 Enhanced manpower allocation using workload modelling (effort scores)
+💰 Discovered key revenue drivers: express services, order quantity, service type
+📍 Identified high-value zones (e.g. CBD ~ SGD 67 average order value)
+📦 Highlighted operational bottlenecks (e.g. 12:00–16:00 delivery slot overload)
+
 
 📂 Project Structure
 astoria-project/
 │
 ├── data1/
-│   └── astoria_orders.csv  # Main synthetic orders dataset (4,500 rows, Jan 2024–Jun 2025)
+│   └── astoria_orders.csv
 │
 ├── src/
+│   ├── dashboard/
 │   ├── manpower_optimize/
-│   │   └── astoria_manpower_optimization.ipynb
-│   │
-│   ├── peak_demand/
-│   │   ├── astoria_peak_demand.ipynb
-│   │   ├── fig1_hourly_pattern.png
-│   │   ├── fig2_period_summary.png
-│   │   ├── fig3_dow_patterns.png
-│   │   ├── fig4_monthly_trend.png
-│   │   ├── fig5_weekly_heatmap.png
-│   │   ├── fig6_slot_demand.png
-│   │   ├── fig7_slot_crossanalysis.png
-│   │   ├── fig8_zone_hour.png
-│   │   └── fig9_rider_forecast.png
-│   │
-│   ├── peak_demand2/
-│   │   ├── astoria_peak_demand.ipynb
-│   │   ├── day_hour_heatmap.png
-│   │   ├── demand_forecast.png
-│   │   ├── hourly_demand.png
-│   │   ├── monthly_weekly_trend.png
-│   │   ├── peak_vs_offpeak.png
-│   │   ├── rider_allocation.png
-│   │   ├── seasonal_decomposition.png
-│   │   ├── slot_demand_timing.png
-│   │   ├── time_bucket_demand.png
-│   │   └── zone_peak_bookings.png
-│   │
-│   ├── route_optimize/
-│   │   ├── astoria_route_optimisation.ipynb
-│   │   ├── astoria_heatmap.html
-│   │   ├── cluster_profiling.png
-│   │   ├── driver_allocation.png
-│   │   ├── kmeans_clusters_scatter.png
-│   │   ├── kmeans_elbow_silhouette.png
-│   │   ├── slot_preference_by_zone.png
-│   │   └── zone_day_heatmap.png
-│   │
-│   └── workforce_planning/
-│       ├── astoria_workforce_planning.ipynb
-│       ├── fig1_effort_overview.png
-│       ├── fig2_service_workload.png
-│       ├── fig3_4_category_analysis.png
-│       ├── fig5_processing_heatmap.png
-│       ├── fig6_express_pressure.png
-│       ├── fig6b_express_effort.png
-│       ├── fig7_weekly_forecast.png
-│       ├── fig8_dow_patterns.png
-│       ├── fig9_tech_allocation.png
-│       └── fig10_routing_matrix.png
+│   ├── peak_demand_analytics/
+│   ├── regression/
+│   ├── route_optimization_analytics/
 │
 ├── README.md
-├── requirements.txt
-└── .gitignore
+└── requirements.txt
+
+📊 Dataset Overview
+- 4,500 synthetic orders (Jan 2024 – Jun 2025)
+
+Key Features
+- Customer Behaviour: booking_time, booking_hour
+- Operations Constraint: collection_time (09:00–17:00 only)
+- Logistics: zones, postal codes, latitude/longitude
+- Revenue Drivers: service type, express options, pricing
+- Workload Indicator: effort_score (1–5)
 
 
-Dataset Overview
-File: astoria_orders.csv  
-Rows: 4,500 synthetic orders (Jan 2024 – Jun 2025)
+📊 Analytics Modules
+🗺️ Route Optimisation
+- Applied K-Means clustering to group orders geographically
+- Identified high-density zones (Bishan, Tampines)
+- Enabled zone-based routing & driver allocation
 
-Column	Description
-order_id	Unique order identifier (AST-00001 …)
-booking_date	Date the order was placed
-booking_time	Time the order was placed (0–23h, reflects customer behaviour)
-booking_hour	Integer hour extracted from booking_time
-booking_day_of_week	Day name (Monday–Saturday)
-collection_date	Date of pickup by driver
-collection_time	Time of pickup (09:00–17:00, Mon–Sat)
-delivery_date	Date order was delivered back
-delivery_slot	Delivery window: 09–13h, 12–16h, 15–18h
-zone	Singapore delivery zone (e.g. Bishan / Toa Payoh)
-postal_district	Singapore postal district (e.g. District 20)
-postal_code	6-digit Singapore postal code
-latitude / longitude	Coordinates of order location
-service	Service type (e.g. Shirt, Curtains, Luxury Bag)
-category	Service category (Clothing, Household, Bags & Shoes)
-quantity	Number of items in the order
-base_price_sgd	Base price per item (SGD)
-delicate_surcharge	Additional $4 charge for delicate items
-express_type	Express tier: None, Next-day, Same-day, 3-Hour
-express_multiplier	Revenue multiplier (1×, 2×, or 3×)
-order_value_sgd	Final order value (SGD)
-free_delivery	Yes if order ≥ $40
-processing_days	Estimated days to process
-processing_label	Human-readable processing time (e.g. 7–14 days)
-effort_score	Workload complexity score (1–5)
-order_status	Completed / In Progress / Pending Delivery
+⏰ Peak Demand Analysis
+- Conducted hourly demand analysis & time-series forecasting
+- Identified morning and night booking peaks
+- Found 12:00–16:00 delivery slot accounts for ~43% demand
+- Supported better scheduling and slot control
 
-Note:
+👨‍🔧 Manpower Optimization
+- Modelled workload using effort scores
+- Aligned staffing with demand patterns
+- Reduced under- and over-staffing risks
 
-booking_time = when customer placed order (any hour, including evenings).
 
-collection_time = operational pickup hours (09:00–17:00, Mon–Sat).
+💰 Revenue Prediction
+- Built regression models to predict order value
 
-These signals are analysed separately.
+Key drivers:
+- Express services
+- Order quantity
 
-📊 Problem Statements & Notebooks
-1. 🗺️ Route Optimisation — astoria_route_optimisation.ipynb
-Goal: Cluster orders by zone to identify high-density areas and estimate driver needs.
+Service type
+🚚 Route Optimization Analytics
+- Improved logistics efficiency
+- Reduced travel time and delivery inefficiencies
 
-Methods: K-Means clustering, Folium heatmaps, zone × day-of-week analysis.
+📈 Dashboard
 
-Key Insight: Bishan/Toa Payoh and Tampines/Pasir Ris are highest-density clusters; CBD orders are low volume but highest average value (~SGD 67).
+Interactive dashboard built with:
 
-Decision Supported: Zone-based routing, dedicated drivers per cluster, pre-sorting bags by zone.
+- HTML, CSS, JavaScript
 
-2. ⏰ Peak Demand Timing — astoria_peak_demand.ipynb / astoria_peak_demand_v2.ipynb
-Goal: Identify booking vs collection peaks for rider allocation.
+Visualises:
 
-Methods: Hourly distributions, time buckets, Holt-Winters forecasting.
+- Demand trends
+- Revenue insights
+- Operational KPIs
 
-Key Insight: Two booking peaks (08–10h, 20–22h). Collections next day. 12–16h slot carries ~43% of deliveries.
+🛠️ Tech Stack
+- Python: Pandas, NumPy, Scikit-learn
+- Forecasting: Holt-Winters
+- Geospatial Analysis: Folium
+- Frontend: HTML, CSS, JavaScript
 
-Decision Supported: WhatsApp responsiveness at night, +1 rider on Fridays, cap 12–16h slot.
+Tools: Jupyter Notebook
+⚙️ Setup Instructions
+1. Clone Repository
+git clone https://github.com/xiangyingg/IS215-dry-cleaning-services-analytics
+cd astoria-project
 
-3. 👥 Workforce Planning — astoria_workforce_planning.ipynb
-Goal: Analyse workload distribution and forecast weekly effort.
+2. Create Virtual Environment
+python -m venv venv
 
-Methods: Effort scoring, workload heatmaps, routing matrices.
+Activate:
 
-Key Insight: Express services disproportionately increase workload pressure.
+# Mac/Linux
+source venv/bin/activate
 
-Decision Supported: Adjust staffing for express tiers, balance workload across categories.
+# Windows
+venv\Scripts\activate
+3. Install Dependencies
+pip install -r requirements.txt
 
-⚙️ Setup & Running
-Requirements:
+4. Dataset Path ⚠️
 
-bash
-pip install pandas numpy matplotlib seaborn scikit-learn statsmodels folium plotly
-Steps:
+Ensure dataset is located at:
 
-Clone or download this project folder.
+data1/astoria_orders.csv
 
-Place astoria_orders.csv in the same directory as notebooks.
+Example:
 
-Open notebooks in Jupyter Notebook, JupyterLab, or Google Colab.
+import pandas as pd
+df = pd.read_csv("../data1/astoria_orders.csv")
 
-Run all cells top to bottom.
+5. Run Notebooks
+jupyter notebook
 
-Google Colab Quick Start:
+Run modules inside:
 
-python
-from google.colab import files
-files.upload()  # select astoria_orders.csv
-🏪 Business Context
-Astoria Cleaning Services (Singapore) offers:
+src/
 
-Standard & express cleaning (same-day / next-day / 3-hour)
+6. Run Dashboard
 
-Specialist care for delicate items (leather, curtains, carpets)
+Open in browser:
 
-Free pickup/delivery for orders ≥ SGD 40
+src/dashboard/dashboard.html
 
-Collection: Mon–Sat, 09:00–17:00
+💡 Tip: Use VS Code Live Server if charts do not load properly.
 
-Delivery slots: 09–13h · 12–16h · 15–18h
+🎯 Project Objective
+To transform traditional dry cleaning operations into a data-driven, optimized system that:
 
-Pricing Highlights:
+- Enhances operational efficiency
+- Improves service reliability
+- Supports better decision-making
+- Elevates customer experience
 
-Standard garments: SGD 9–20
+⚠️ Notes
+Dataset is synthetic (simulation purposes)
+Models are not production-ready
 
-Premium/delicate items: SGD 45–120 (+SGD 4 surcharge)
 
-Express services: 2×–3× base rate
+## 👥 Team
+**Xiang Ying** — Data Analyst  
+GitHub: https://github.com/xiangyingg  
 
-Long processing items: 7–14 days
+**Ji Ning** — Data Analyst  
+GitHub: https://github.com/ningg02  
 
-📌 Notes
-All data is synthetic, generated for analytical purposes.
+**Marcus** — Full Stack Developer  
+GitHub: https://github.com/marcang0803  
 
-Postal codes and coordinates are representative of Singapore zones.
+**Wee Kiat** — Full Stack Developer  
+GitHub: https://github.com/weekiat2003-lab  
 
-Sunday excluded (Astoria closed).
+**Ernest** — Collaborator  
+GitHub: https://github.com/ernestwongx  
 
-Processing times vary during peak seasons (school holidays, festive periods).
+**Charlotte** — Collaborator  
+GitHub: https://github.com/lottepi  
