@@ -1,4 +1,4 @@
-<img width="230" height="222" alt="image" src="https://github.com/user-attachments/assets/49d8d1b0-995f-4f22-99fa-3f953402fac5" />🧺 Astoria Dry Cleaning Analytics Project
+🧺 Astoria Dry Cleaning Analytics Project
 📌 Overview
 
 This project explores digital transformation in the dry cleaning industry using Astoria Dry Cleaning Services (Singapore) as a case study.
