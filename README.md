@@ -1,4 +1,5 @@
 🧺 Astoria Dry Cleaning Analytics Project
+
 📌 Overview
 
 This project explores digital transformation in the dry cleaning industry using Astoria Dry Cleaning Services (Singapore) as a case study.
@@ -20,21 +21,21 @@ It leverages data analytics, forecasting, and optimization techniques to enhance
 📦 Highlighted operational bottlenecks (e.g. 12:00–16:00 delivery slot overload)
 
 
-📂 Project Structure
+## Project Structure
+
+```
 astoria-project/
-│
 ├── data1/
 │   └── astoria_orders.csv
-│
 ├── src/
 │   ├── dashboard/
 │   ├── manpower_optimize/
 │   ├── peak_demand_analytics/
 │   ├── regression/
-│   ├── route_optimization_analytics/
-│
+│   └── route_optimization_analytics/
 ├── README.md
 └── requirements.txt
+```
 
 📊 Dataset Overview
 - 4,500 synthetic orders (Jan 2024 – Jun 2025)
