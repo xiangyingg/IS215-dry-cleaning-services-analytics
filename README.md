@@ -13,11 +13,17 @@ It leverages data analytics, forecasting, and optimization techniques to enhance
 - Customer experience
 
 🚀 Key Impact
+
 📈 Identified dual booking peaks (08:00–10:00, 20:00–22:00) to optimise staffing
+
 🚚 Improved delivery planning through zone-based clustering
+
 👨‍🔧 Enhanced manpower allocation using workload modelling (effort scores)
+
 💰 Discovered key revenue drivers: express services, order quantity, service type
+
 📍 Identified high-value zones (e.g. CBD ~ SGD 67 average order value)
+
 📦 Highlighted operational bottlenecks (e.g. 12:00–16:00 delivery slot overload)
 
 
