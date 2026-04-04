@@ -1,4 +1,5 @@
 🧺 Astoria Dry Cleaning Analytics Project
+
 📌 Overview
 
 This project explores digital transformation in the dry cleaning industry using Astoria Dry Cleaning Services (Singapore) as a case study.
@@ -28,7 +29,6 @@ astoria-project/
 │
 ├── src/
 │   ├── dashboard/
-│   ├── manpower_optimize/
 │   ├── peak_demand_analytics/
 │   ├── regression/
 │   ├── route_optimization_analytics/
