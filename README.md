@@ -35,7 +35,6 @@ astoria-project/
 │   └── astoria_orders.csv
 ├── src/
 │   ├── dashboard/
-│   ├── manpower_optimize/
 │   ├── peak_demand_analytics/
 │   ├── regression/
 │   └── route_optimization_analytics/
