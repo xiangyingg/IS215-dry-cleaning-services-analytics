@@ -54,6 +54,7 @@ Key Features
 
 
 📊 Analytics Modules
+
 🗺️ Route Optimisation
 - Applied K-Means clustering to group orders geographically
 - Identified high-density zones (Bishan, Tampines)
@@ -64,12 +65,6 @@ Key Features
 - Identified morning and night booking peaks
 - Found 12:00–16:00 delivery slot accounts for ~43% demand
 - Supported better scheduling and slot control
-
-👨‍🔧 Manpower Optimization
-- Modelled workload using effort scores
-- Aligned staffing with demand patterns
-- Reduced under- and over-staffing risks
-
 
 💰 Revenue Prediction
 - Built regression models to predict order value
