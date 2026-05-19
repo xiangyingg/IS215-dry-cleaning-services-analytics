@@ -18,8 +18,6 @@ It leverages data analytics, forecasting, and optimization techniques to enhance
 
 🚚 Improved delivery planning through zone-based clustering
 
-👨‍🔧 Enhanced manpower allocation using workload modelling (effort scores)
-
 💰 Discovered key revenue drivers: express services, order quantity, service type
 
 📍 Identified high-value zones (e.g. CBD ~ SGD 67 average order value)
