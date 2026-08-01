@@ -1,33 +1,32 @@
-Astoria Dry Cleaning Analytics Project
+# Astoria Dry Cleaning Analytics Project
 
-Overview
+## **Overview**
 
 This project explores digital transformation in the dry cleaning industry using Astoria Dry Cleaning Services (Singapore) as a case study.
 
 It leverages data analytics, forecasting, and optimization techniques to enhance:
 
-- Demand prediction
-- Workforce planning
-- Route efficiency
-- Revenue performance
-- Customer experience
+* Demand prediction
+* Workforce planning
+* Route efficiency
+* Revenue performance
+* Customer experience
 
-Key Impact
+## **Key Impact**
 
-- Identified dual booking peaks (08:00–10:00, 20:00–22:00) to optimise staffing
+* Identified dual booking peaks (08:00–10:00, 20:00–22:00) to optimise staffing
 
-- Improved delivery planning through zone-based clustering
+* Improved delivery planning through zone-based clustering
 
-- Discovered key revenue drivers: express services, order quantity, service type
+* Discovered key revenue drivers: express services, order quantity, service type
 
-- Identified high-value zones (e.g. CBD ~ SGD 67 average order value)
+* Identified high-value zones (e.g. CBD ~ SGD 67 average order value)
 
-- Highlighted operational bottlenecks (e.g. 12:00–16:00 delivery slot overload)
+* Highlighted operational bottlenecks (e.g. 12:00–16:00 delivery slot overload)
 
+## **Project Structure**
 
-## Project Structure
-
-```
+```text
 astoria-project/
 ├── data1/
 │   └── astoria_orders.csv
@@ -40,134 +39,168 @@ astoria-project/
 └── requirements.txt
 ```
 
-Dataset Overview
-- 4,500 synthetic orders (Jan 2024 – Jun 2025)
+## **Dataset Overview**
 
-Key Features
-- Customer Behaviour: booking_time, booking_hour
-- Operations Constraint: collection_time (09:00–17:00 only)
-- Logistics: zones, postal codes, latitude/longitude
-- Revenue Drivers: service type, express options, pricing
-- Workload Indicator: effort_score (1–5)
+* 4,500 synthetic orders (Jan 2024 – Jun 2025)
 
+### **Key Features**
 
-Analytics Modules
+* Customer Behaviour: booking_time, booking_hour
+* Operations Constraint: collection_time (09:00–17:00 only)
+* Logistics: zones, postal codes, latitude/longitude
+* Revenue Drivers: service type, express options, pricing
+* Workload Indicator: effort_score (1–5)
 
-Route Optimization
-- Applied K-Means clustering to group orders geographically
-- Identified high-density zones (Bishan, Tampines)
-- Enabled zone-based routing & driver allocation
+## **Analytics Modules**
 
-Peak Demand Analysis
-- Conducted hourly demand analysis & time-series forecasting
-- Identified morning and night booking peaks
-- Found 12:00–16:00 delivery slot accounts for ~43% demand
-- Supported better scheduling and slot control
+### **Route Optimization**
 
-Revenue Prediction
-- Built regression models to predict order value
+* Applied K-Means clustering to group orders geographically
+* Identified high-density zones (Bishan, Tampines)
+* Enabled zone-based routing & driver allocation
+
+### **Peak Demand Analysis**
+
+* Conducted hourly demand analysis & time-series forecasting
+* Identified morning and night booking peaks
+* Found 12:00–16:00 delivery slot accounts for ~43% demand
+* Supported better scheduling and slot control
+
+### **Revenue Prediction**
+
+* Built regression models to predict order value
 
 Key drivers:
-- Express services
-- Order quantity
+
+* Express services
+* Order quantity
 
 Service type:
 
-Route Optimization Analytics
-- Improved logistics efficiency
-- Reduced travel time and delivery inefficiencies
+### **Route Optimization Analytics**
 
-Dashboard
+* Improved logistics efficiency
+* Reduced travel time and delivery inefficiencies
+
+## **Dashboard**
 
 Interactive dashboard built with:
 
-- HTML, CSS, JavaScript
+* HTML, CSS, JavaScript
 
 Visualises:
 
-- Demand trends
-- Revenue insights
-- Operational KPIs
+* Demand trends
+* Revenue insights
+* Operational KPIs
 
-Tech Stack
-- Python: Pandas, NumPy, Scikit-learn
-- Forecasting: Holt-Winters
-- Geospatial Analysis: Folium
-- Frontend: HTML, CSS, JavaScript
+## **Tech Stack**
+
+* Python: Pandas, NumPy, Scikit-learn
+* Forecasting: Holt-Winters
+* Geospatial Analysis: Folium
+* Frontend: HTML, CSS, JavaScript
 
 Tools: Jupyter Notebook
-Setup Instructions
-1. Clone Repository
+
+## **Setup Instructions**
+
+### **1. Clone Repository**
+
+```bash
 git clone https://github.com/xiangyingg/IS215-dry-cleaning-services-analytics
 cd astoria-project
+```
 
-2. Create Virtual Environment
+### **2. Create Virtual Environment**
+
+```bash
 python -m venv venv
+```
 
 Activate:
 
+```bash
 # Mac/Linux
 source venv/bin/activate
 
 # Windows
 venv\Scripts\activate
-3. Install Dependencies
-pip install -r requirements.txt
+```
 
-4. Dataset Path
+### **3. Install Dependencies**
+
+```bash
+pip install -r requirements.txt
+```
+
+### **4. Dataset Path**
 
 Ensure dataset is located at:
 
+```text
 data1/astoria_orders.csv
+```
 
 Example:
 
+```python
 import pandas as pd
 df = pd.read_csv("../data1/astoria_orders.csv")
+```
 
-5. Run Notebooks
+### **5. Run Notebooks**
+
+```bash
 jupyter notebook
+```
 
 Run modules inside:
 
+```text
 src/
+```
 
-6. Run Dashboard
+### **6. Run Dashboard**
 
 Open in browser:
 
+```text
 src/dashboard/dashboard.html
+```
 
 Tip: Use VS Code Live Server if charts do not load properly.
 
-Project Objective
+## **Project Objective**
+
 To transform traditional dry cleaning operations into a data-driven, optimized system that:
 
-- Enhances operational efficiency
-- Improves service reliability
-- Supports better decision-making
-- Elevates customer experience
+* Enhances operational efficiency
+* Improves service reliability
+* Supports better decision-making
+* Elevates customer experience
 
-Notes:
-Dataset is synthetic (simulation purposes)
-Models are not production-ready
+## **Notes**
 
+* Dataset is synthetic (simulation purposes)
+* Models are not production-ready
 
-## Team
-**Xiang Ying** — Data Analyst  
-GitHub: https://github.com/xiangyingg  
+## **Team**
 
-**Ji Ning** — Data Analyst  
-GitHub: https://github.com/ningg02  
+**Xiang Ying** — Data Analyst
+GitHub: https://github.com/xiangyingg
 
-**Marcus** — Full Stack Developer  
-GitHub: https://github.com/marcang0803  
+**Ji Ning** — Data Analyst
+GitHub: https://github.com/ningg02
 
-**Wee Kiat** — Full Stack Developer  
-GitHub: https://github.com/weekiat2003-lab  
+**Marcus** — Full Stack Developer
+GitHub: https://github.com/marcang0803
 
-**Ernest** — Collaborator  
-GitHub: https://github.com/ernestwongx  
+**Wee Kiat** — Full Stack Developer
+GitHub: https://github.com/weekiat2003-lab
 
-**Charlotte** — Collaborator  
-GitHub: https://github.com/lottepi  
+**Ernest** — Collaborator
+GitHub: https://github.com/ernestwongx
+
+**Charlotte** — Collaborator
+GitHub: https://github.com/lottepi
